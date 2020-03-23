@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native'
-import Card from './cardView'
+import {View, Text, StyleSheet, TextInput, ScrollView, Button} from 'react-native'
+import CardView from './cardView'
 
 export default class Main extends Component{
     constructor(props){
@@ -9,7 +9,15 @@ export default class Main extends Component{
         this.state = {
             name:'',
             email:'',
+            DATA:[
+                {name:'javed', email:'javed@gmail.com'},
+            ]
         }
+        this.add = this.add.bind(this)
+        
+    }
+    add(name,email){
+        this.state.DATA.push({name:name,email:email})
     }
     render(){
         return(
@@ -30,14 +38,12 @@ export default class Main extends Component{
                         })}   
                         style={styles.textInputStyle}
                     />
+                    <Button title="Add" style={{margin:5}} onPress={() => this.add(this.state.name, this.state.email)}></Button>
                 </View>
                 <View style={styles.dataArea}>
-                    {/* <ScrollView> */}
-                        {/* {this.state.DATA.map((data) => {
-                            <CardView name={data.name} email={data.email}/>
-                        })} */}
-                        {/* <Card /> */}
-                    {/* </ScrollView> */}
+                    <ScrollView>
+                        {this.state.DATA.map(data => <CardView data={data} />)}
+                    </ScrollView>
                 </View>
             </View>
         );
@@ -51,7 +57,6 @@ const styles = StyleSheet.create({
     },
     inputArea:{
         flex:3,
-        backgroundColor:'blue'
     },
     dataArea:{
         flex:7,

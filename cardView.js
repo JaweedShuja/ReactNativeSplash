@@ -5,14 +5,14 @@ export default class CardView extends Component{
     constructor(props){
         super(props)
         this.state ={
-            
+
         }
     }
     render(){
         return(
-            <View>
-                <Text style={styles.textStyle} >dsfds</Text>
-                <Text style={styles.textStyle}>dfds</Text>
+            <View style={styles.container}>
+                <Text style={styles.textStyle}>{this.props.data.name}</Text>
+                <Text style={styles.textStyle}>{this.props.data.email}</Text>
             </View>
         );
     }
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'whitesmoke',
         padding:10,
+        margin:10,
 
     },
     textStyle:{
